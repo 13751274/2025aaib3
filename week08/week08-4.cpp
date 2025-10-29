@@ -1,0 +1,23 @@
+//week08-4.cpp
+//1041.
+class Solution {
+public:
+    bool isRobotBounded(string instructions) {
+        int d=0;//0北 1東 2南 3西
+        int x=0,y=0;
+        instructions=instructions+instructions+instructions+instructions;
+        for(char c:instructions){
+            if(c=='G'){//往前走
+                if(d==0)y++;//往北走
+                if(d==1)x++;//往東走
+                if(d==2)y--;//往南走
+                if(d==3)x--;//往西走
+            }else if(c=='R'){//往右轉(順時針90度)
+                d=(d+1)%4;
+            }else if(c=='L'){//往左轉(逆時針90度)}
+                d=(d+3)%4;
+            }
+        }
+        return x==0 && y==0;//結束時 機器人在哪 什麼叫繞圈圈?
+    }
+};
